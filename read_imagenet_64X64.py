@@ -3,13 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
+
+path_to_images= r'C:\My_Data\trasnformer_code\val_data'
 def unpickle(file):
     with open(file, 'rb') as fo:
         dict = pickle.load(fo)
     return dict
 def load_databatch( img_size=64):
 
-    d = unpickle('val_data')
+    d = unpickle(path_to_images)
     x = d['data']
     y = d['labels']
 
@@ -31,8 +33,8 @@ def load_databatch( img_size=64):
 X_train,Y_train=load_databatch()
 X_train=X_train.transpose(0,2,3,1)
 
-# print(X_train.shape)
-# print(len(Y_train))
+print(X_train.shape)
+print(len(Y_train))
 
 x1=X_train[20,:,:,:]
 y1=Y_train[20]
