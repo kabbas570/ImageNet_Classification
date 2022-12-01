@@ -2,6 +2,9 @@
 traindir = '/data/PublicDataSets/ImageNet-2012/ILSVRC2012/train/'
 valdir = '/data/PublicDataSets/ImageNet-2012/ILSVRC2012/val/'
 
+#traindir = '/data/home/acw676/ImageNet/val/'
+#valdir = '/data/home/acw676/ImageNet/val/'
+
 path_to_save_check_points = '/data/home/acw676/ImageNet/weights/'+'/mobilenet_v3_large'
 path_to_save_Learning_Curve = '/data/home/acw676/ImageNet/weights/'+'/mobilenet_v3_large'
 
@@ -199,8 +202,8 @@ def main():
         save_checkpoint(checkpoint)
         Acc_= check_accuracy(val_loader, model, device=DEVICE)
         avg_valid_Acc.append(Acc_.detach().cpu().numpy())
-        
-        early_stopping(valid_loss, Acc_)
+ 
+        early_stopping(valid_loss, Acc_[0])
         if early_stopping.early_stop:
             print("Early stopping Reached at  :",epoch)
             break
